@@ -1,0 +1,13 @@
+{application,emqx_plugin_kafka,
+             [{description,"EMQ X plugin kafka bridge, Edit by yzs-lyg"},
+              {vsn,"master"},
+              {modules,[emqx_cli_demo_kafka,emqx_plugin_kafka,
+                        emqx_plugin_kafka_app,emqx_plugin_kafka_sup]},
+              {registered,[emqx_plugin_kafka_sup]},
+              {applications,[kernel,stdlib,ekaf]},
+              {mod,{emqx_plugin_kafka_app,[]}},
+              {env,[]},
+              {licenses,["Apache-2.0"]},
+              {maintainers,["lyg <3613840847@qq.com>"]},
+              {links,[{"Github",
+                       "https://github.com/yzs/emqx-plugin-kafka"}]}]}.

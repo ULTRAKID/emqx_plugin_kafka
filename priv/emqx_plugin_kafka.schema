@@ -1,0 +1,35 @@
+%%-*- mode: erlang -*-
+
+{mapping, "kafka.host", "emqx_plugin_kafka.broker", [
+  {default, "192.168.0.128"},
+  {datatype, string}
+]}.
+
+{mapping, "kafka.port", "emqx_plugin_kafka.broker", [
+  {default, "9092"},
+  {datatype, string}
+]}.
+
+{mapping, "kafka.partitionstrategy", "emqx_plugin_kafka.broker", [
+  {default, "strict_round_robin"},
+  {datatype, string}
+]}.
+
+{mapping, "kafka.partitionworkers", "emqx_plugin_kafka.broker", [
+  {default, 8},
+  {datatype, integer}
+]}.
+
+{mapping, "kafka.payloadtopic", "emqx_plugin_kafka.broker", [
+  {default, "Processing"},
+  {datatype, string}
+]}.
+
+{translation, "emqx_plugin_kafka.broker", fun(Conf) ->
+  KafkaHost = cuttlefish:conf_get("kafka.host", Conf),
+  KafkaPort = cuttlefish:conf_get("kafka.port", Conf),
+  KafkaPartitionStrategy = cuttlefish:conf_get("kafka.partitionstrategy", Conf),
+  KafkaPartitionWorkers = cuttlefish:conf_get("kafka.partitionworkers", Conf),
+  KafkaPayloadTopic = cuttlefish:conf_get("kafka.payloadtopic", Conf),
+  [{host, KafkaHost}, {port, KafkaPort}, {partitionstrategy, KafkaPartitionStrategy}, {partitionworkers, KafkaPartitionWorkers}, {payloadtopic, KafkaPayloadTopic}]
+  end}.
