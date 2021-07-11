@@ -26,8 +26,9 @@ Build the EMQX broker
 ```
 ###### (2).准备Erlang/OTP 22环境 (推荐使用erlang22.3版本)
 ```
-  esl-erlang_22.3.4.2-1_centos_7_amd64.rpm
-  (或 otp_src_22.3.tar.gz ) 
+  根据服务器CPU架构不同选择不同安装包，如果是X86架构，使用esl-erlang_22.3.4.2-1_centos_7_amd64.rpm安装；如果是arm架构，使用源码包安装。
+  
+  esl-erlang_22.3.4.2-1_centos_7_amd64.rpm (或 otp_src_22.3.tar.gz ) 
   
   注意：如果通过源码otp_src_22.3.tar.gz安装方式，如果中间有报错，如下错误：
     jinterface     : No Java compiler found
