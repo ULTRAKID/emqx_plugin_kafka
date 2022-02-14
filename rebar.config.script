@@ -24,7 +24,7 @@ CUR_BRANCH = case os:getenv("GITHUB_RUN_ID") of
              end,
 
 MATCH_BRANCH = fun (BranchName) ->
-                 case re:run(BranchName, "^release|develop|master", [{capture, none}]) of
+                 case re:run(BranchName, "^release|develop|master|main", [{capture, none}]) of
                    match -> BranchName;
                    _ -> case re:run(BranchName, "^[v]?[0-9]\.[0-9]\.([0-9]|(rc|beta|alpha)\.[0-9])", [{capture, none}]) of
                           match -> BranchName;
