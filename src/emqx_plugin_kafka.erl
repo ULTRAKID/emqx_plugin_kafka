@@ -22,8 +22,8 @@
 
 % -include_lib("emqx/include/emqx.hrl").
 
--include_lib("emqx.hrl").
--include_lib("logger.hrl").
+-include("emqx.hrl").
+-include("logger.hrl").
 
 -export([load/1, unload/0]).
 
@@ -128,12 +128,12 @@ on_client_disconnected(ClientInfo = #{clientid := ClientId}, ReasonCode, ConnInf
   ok.
 
 on_client_authenticate(_ClientInfo = #{clientid := ClientId}, Result, _Env) ->
-%%  ?INFO("[KAFKA PLUGIN]Client(~s) authenticate, Result:~n~p~n", [ClientId, Result]),
+  ?INFO("[KAFKA PLUGIN]Client(~s) authenticate, Result:~n~p~n", [ClientId, Result]),
   ok.
 
 on_client_check_acl(_ClientInfo = #{clientid := ClientId}, Topic, PubSub, Result, _Env) ->
-%%  ?INFO("[KAFKA PLUGIN]Client(~s) check_acl, PubSub:~p, Topic:~p, Result:~p~n",
-%%    [ClientId, PubSub, Topic, Result]),
+  ?INFO("[KAFKA PLUGIN]Client(~s) check_acl, PubSub:~p, Topic:~p, Result:~p~n",
+    [ClientId, PubSub, Topic, Result]),
   ok.
 
 %%---------------------------client subscribe start--------------------------%%
@@ -232,7 +232,7 @@ on_message_acked(_ClientInfo = #{clientid := ClientId}, Message, _Env) ->
 %%--------------------------------------------------------------------
 
 on_session_created(#{clientid := ClientId}, SessInfo, _Env) ->
-  %?INFO("[KAFKA PLUGIN]Session(~s) created, Session Info:~n~p~n", [ClientId, SessInfo]).
+  ?INFO("[KAFKA PLUGIN]Session(~s) created, Session Info:~n~p~n", [ClientId, SessInfo]).
   ok.
 
 
