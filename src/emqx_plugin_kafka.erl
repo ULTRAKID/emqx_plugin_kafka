@@ -232,7 +232,7 @@ on_message_acked(_ClientInfo = #{clientid := ClientId}, Message, _Env) ->
 %%--------------------------------------------------------------------
 
 on_session_created(#{clientid := ClientId}, SessInfo, _Env) ->
-  ?LOG_INFO("[KAFKA PLUGIN]Session(~s) created, Session Info:~n~p~n", [ClientId, SessInfo]).
+  ?LOG_INFO("[KAFKA PLUGIN]Session(~s) created, Session Info:~n~p~n", [ClientId, SessInfo]),
   ok.
 
 
@@ -262,7 +262,7 @@ on_session_terminated(_ClientInfo = #{clientid := ClientId}, Reason, SessInfo, _
   ok.
 
 ekaf_init(_Env) ->
-  io:format("Init emqx plugin kafka.....")
+  io:format("Init emqx plugin kafka....."),
   {ok, BrokerValues} = application:get_env(emqx_plugin_kafka, broker),
   KafkaHost = proplists:get_value(host, BrokerValues),
   ?LOG_INFO("[KAFKA PLUGIN]KafkaHost = ~s~n", [KafkaHost]),
