@@ -262,6 +262,7 @@ on_session_terminated(_ClientInfo = #{clientid := ClientId}, Reason, SessInfo, _
   ok.
 
 ekaf_init(_Env) ->
+  io:format("Init emqx plugin kafka.....")
   {ok, BrokerValues} = application:get_env(emqx_plugin_kafka, broker),
   KafkaHost = proplists:get_value(host, BrokerValues),
   ?INFO("[KAFKA PLUGIN]KafkaHost = ~s~n", [KafkaHost]),
@@ -315,21 +316,21 @@ format_payload(Message) ->
 
 %% Called when the plugin application stop
 unload() ->
-%%  emqx:unhook('client.connect', {?MODULE, on_client_connect}),
-%%  emqx:unhook('client.connack', {?MODULE, on_client_connack}),
+  emqx:unhook('client.connect', {?MODULE, on_client_connect}),
+  emqx:unhook('client.connack', {?MODULE, on_client_connack}),
   emqx:unhook('client.connected', {?MODULE, on_client_connected}),
   emqx:unhook('client.disconnected', {?MODULE, on_client_disconnected}),
-%%  emqx:unhook('client.authenticate', {?MODULE, on_client_authenticate}),
-%%  emqx:unhook('client.check_acl', {?MODULE, on_client_check_acl}),
-%%  emqx:unhook('client.subscribe', {?MODULE, on_client_subscribe}),
-%%  emqx:unhook('client.unsubscribe', {?MODULE, on_client_unsubscribe}),
-%%  emqx:unhook('session.created', {?MODULE, on_session_created}),
-%%  emqx:unhook('session.subscribed', {?MODULE, on_session_subscribed}),
-%%  emqx:unhook('session.unsubscribed', {?MODULE, on_session_unsubscribed}),
-%%  emqx:unhook('session.resumed', {?MODULE, on_session_resumed}),
-%%  emqx:unhook('session.discarded', {?MODULE, on_session_discarded}),
-%%  emqx:unhook('session.takeovered', {?MODULE, on_session_takeovered}),
-%%  emqx:unhook('session.terminated', {?MODULE, on_session_terminated}),
+  emqx:unhook('client.authenticate', {?MODULE, on_client_authenticate}),
+  emqx:unhook('client.check_acl', {?MODULE, on_client_check_acl}),
+  emqx:unhook('client.subscribe', {?MODULE, on_client_subscribe}),
+  emqx:unhook('client.unsubscribe', {?MODULE, on_client_unsubscribe}),
+  emqx:unhook('session.created', {?MODULE, on_session_created}),
+  emqx:unhook('session.subscribed', {?MODULE, on_session_subscribed}),
+  emqx:unhook('session.unsubscribed', {?MODULE, on_session_unsubscribed}),
+  emqx:unhook('session.resumed', {?MODULE, on_session_resumed}),
+  emqx:unhook('session.discarded', {?MODULE, on_session_discarded}),
+  emqx:unhook('session.takeovered', {?MODULE, on_session_takeovered}),
+  emqx:unhook('session.terminated', {?MODULE, on_session_terminated}),
   emqx:unhook('message.publish', {?MODULE, on_message_publish}),
   emqx:unhook('message.delivered', {?MODULE, on_message_delivered}),
   emqx:unhook('message.acked', {?MODULE, on_message_acked}),
