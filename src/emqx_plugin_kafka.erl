@@ -261,7 +261,7 @@ on_session_terminated(_ClientInfo = #{clientid := ClientId}, Reason, SessInfo, _
   ok.
 
 kafka_init(_Env) ->
-  ?LOG_INFO("Start to init emqx plugin kafka.....~n"),
+  ?LOG_INFO("Start to init emqx plugin kafka..... ~n"),
   {ok, AddressList} = application:get_env(emqx_plugin_kafka, kafka_address_list),
   ?LOG_INFO("[KAFKA PLUGIN]KafkaAddressList = ~p~n", [AddressList]),
   {ok, KafkaConfig} = application:get_env(emqx_plugin_kafka, kafka_config),
