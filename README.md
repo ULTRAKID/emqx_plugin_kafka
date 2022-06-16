@@ -2,9 +2,9 @@
 
 ## 更新说明
 
-*v4.3.12.6*: 
+*v4.3.12.6*:  [Release emqx-4.3.12.6-with-kafka · ULTRAKID/emqx_plugin_kafka (github.com)](https://github.com/ULTRAKID/emqx_plugin_kafka/releases/tag/emqx-4.3.12.6-with-kafka)
 
-`2022.06.16` 将原来的kafka依赖从`ekaf`替换成[kafka4beam](https://github.com/kafka4beam)/**[brod](https://github.com/kafka4beam/brod)**
+`2022.06.16` 将原来的`kafka`依赖从`ekaf`替换成[kafka4beam](https://github.com/kafka4beam)/**[brod](https://github.com/kafka4beam/brod)**
 
 emqx-plugin-template
 ====================
