@@ -332,7 +332,8 @@ produce_kafka_payload(Key, Message) ->
   {ok, MessageBody} = emqx_json:safe_encode(Message),
   % ?LOG_INFO("[KAFKA PLUGIN]Message = ~s~n",[MessageBody]),
   Payload = iolist_to_binary(MessageBody),
-  {ok, _} = brod:produce(emqx_repost_worker, Topic, 0, Key, Payload).
+  brod:produce_cb(emqx_repost_worker, Topic, hash, Key, Payload, fun(_,_) -> ok end),
+  ok.
 
 ntoa({0, 0, 0, 0, 0, 16#ffff, AB, CD}) ->
   inet_parse:ntoa({AB bsr 8, AB rem 256, CD bsr 8, CD rem 256});
