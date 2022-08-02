@@ -35,12 +35,6 @@ Build the EMQX broker
 ```
 ###### 2. 准备Erlang/OTP 22及以上环境
 
-注：由于本插件引用的第三方依赖`ekaf`中使用了`pg2`模块，该模块在`OTP 24`及之后的版本已被官方移除，因此***请使用`OTP 24`以下的版本***。
-
-> - pg2:_/_ (this module was removed in OTP 24. Use 'pg' instead)
->
->   [Erlang -- Removed Functionality](https://www.erlang.org/doc/general_info/removed.html#otp-24)
-
 参照[Erlang and Elixir Packages Download - Erlang Solutions (erlang-solutions.com)](https://www.erlang-solutions.com/downloads/) 官网安装方式。
 
 ###### 3. 下载EMQX源码
