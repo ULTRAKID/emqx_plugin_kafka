@@ -2,9 +2,13 @@
 
 ## 更新说明
 
+*v4.3.12.7*: [Release emqx-4.3.12.7-with-kafka · ULTRAKID/emqx_plugin_kafka (github.com)](https://github.com/ULTRAKID/emqx_plugin_kafka/releases/tag/emqx-4.3.12.7-with-kafka)
+
+`2022.08.02` 新增了是否对`publish`消息进行`base64`编码后再`kafka`转发的配置项`publish_base64`，发送数据为字节流的时候建议启用该配置。
+
 *v4.3.12.6*:  [Release emqx-4.3.12.6-with-kafka · ULTRAKID/emqx_plugin_kafka (github.com)](https://github.com/ULTRAKID/emqx_plugin_kafka/releases/tag/emqx-4.3.12.6-with-kafka)
 
-`2022.06.16` 将原来的`kafka`依赖从`ekaf`替换成[kafka4beam](https://github.com/kafka4beam)/**[brod](https://github.com/kafka4beam/brod)**
+`2022.06.16` 将原来的`kafka`依赖从`ekaf`替换成[kafka4beam](https://github.com/kafka4beam)/**[brod](https://github.com/kafka4beam/brod)**。
 
 emqx-plugin-template
 ====================
