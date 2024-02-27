@@ -94,7 +94,7 @@ on_client_connected(ClientInfo = #{clientid := ClientId}, ConnInfo, _Env) ->
     [ClientId, ClientInfo, ConnInfo]),
   {IpAddr, _Port} = maps:get(peername, ConnInfo),
   Action = <<"connected">>,
-  Now = now_mill_secs(os:timestamp()),
+  Now = now_mill_secs(),
   Online = 1,
   Payload = [
     {action, Action},
@@ -114,7 +114,7 @@ on_client_disconnected(ClientInfo = #{clientid := ClientId}, ReasonCode, ConnInf
   ?LOG_INFO("[KAFKA PLUGIN]Client(~s) disconnected due to ~p, ClientInfo:~n~p~n, ConnInfo:~n~p~n",
     [ClientId, ReasonCode, ClientInfo, ConnInfo]),
   Action = <<"disconnected">>,
-  Now = now_mill_secs(os:timestamp()),
+  Now = now_mill_secs(),
   Online = 0,
   Payload = [
     {action, Action},
@@ -142,7 +142,7 @@ on_client_subscribe(#{clientid := ClientId}, _Properties, TopicFilters, _Env) ->
   Topic = erlang:element(1, erlang:hd(TopicFilters)),
   Qos = erlang:element(2, lists:last(TopicFilters)),
   Action = <<"subscribe">>,
-  Now = now_mill_secs(os:timestamp()),
+  Now = now_mill_secs(),
   Payload = [
     {device_id, ClientId},
     {action, Action},
@@ -157,7 +157,7 @@ on_client_unsubscribe(#{clientid := ClientId}, _Properties, TopicFilters, _Env) 
   ?LOG_INFO("[KAFKA PLUGIN]Client(~s) will unsubscribe ~p~n", [ClientId, TopicFilters]),
   Topic = erlang:element(1, erlang:hd(TopicFilters)),
   Action = <<"unsubscribe">>,
-  Now = now_mill_secs(os:timestamp()),
+  Now = now_mill_secs(),
   Payload = [
     {device_id, ClientId},
     {action, Action},
@@ -343,5 +343,5 @@ ntoa({0, 0, 0, 0, 0, 16#ffff, AB, CD}) ->
   inet_parse:ntoa({AB bsr 8, AB rem 256, CD bsr 8, CD rem 256});
 ntoa(IP) ->
   inet_parse:ntoa(IP).
-now_mill_secs({MegaSecs, Secs, _MicroSecs}) ->
-  MegaSecs * 1000000000 + Secs * 1000 + _MicroSecs.
+now_mill_secs() ->
+  erlang:system_time(millisecond).
